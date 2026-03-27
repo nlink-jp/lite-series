@@ -179,13 +179,20 @@ and may not support all platforms.
 
 1. All tests pass (`make check`).
 2. Update `CHANGELOG.md` with the new version and date.
-3. Commit and push to `main`.
-4. Create a Git tag (`git tag vX.Y.Z`) and push it.
-5. Cross-compile release binaries.
-6. Package binaries: `.zip` per platform.
-7. Create a GitHub Release with English release notes and upload the zips as assets.
+3. Update any stale documentation (`docs/`, `README.md`, `README.ja.md`).
+   Japanese translations must be kept in sync with every English change.
+4. Commit and push to `main`.
+5. Create a Git tag (`git tag vX.Y.Z`) and push it.
+6. Cross-compile release binaries (`make build-all` or `make dist` depending on project).
+7. Package binaries: one `.zip` (or `.tar.gz` for CGO projects) per platform.
+8. Create a GitHub Release with English release notes and upload the archives as assets.
+9. Update the `lite-series` umbrella repository: run `git submodule update --remote <project>`
+   and commit the updated submodule pointer.
 
 Breaking changes require a **minor version bump** while the project is in the `0.x` series.
+
+Security fixes follow an extended checklist — see
+[docs/process/security-patch.md](docs/process/security-patch.md).
 
 ---
 
@@ -234,7 +241,7 @@ Breaking changes require a **minor version bump** while the project is in the `0
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) +
 [Semantic Versioning](https://semver.org/).
 
-Section categories: `Added`, `Changed`, `Fixed`, `Removed`, `Docs`, `Internal`.
+Section categories: `Added`, `Changed`, `Fixed`, `Removed`, `Security`, `Docs`, `Internal`.
 Prefix breaking changes with **Breaking:**.
 
 Header template:
