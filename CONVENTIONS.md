@@ -23,6 +23,9 @@ and review.
   [Configuration File — Permission warning](#permission-warning)).
 - Keep dependencies minimal; document the rationale for each third-party library.
 - Run `govulncheck` as part of the quality gate (`make check`).
+- Any tool that passes untrusted external text to an LLM must apply the shared
+  prompt injection protection strategy. See
+  [docs/security/prompt-injection.md](docs/security/prompt-injection.md).
 
 ### Build small, fix small
 
