@@ -1,6 +1,9 @@
 [submodule "lite-llm"]
 	path = lite-llm
-	url = https://github.com/magifd2/lite-llm.git
+	url = git@github.com:nlink-jp/lite-llm.git
 [submodule "lite-rag"]
 	path = lite-rag
-	url = https://github.com/magifd2/lite-rag.git
+	url = git@github.com:nlink-jp/lite-rag.git
+[submodule "lite-switch"]
+	path = lite-switch
+	url = git@github.com:nlink-jp/lite-switch.git
