@@ -44,6 +44,17 @@ printed to stderr advising the user to run `chmod 600`.
 
 **Fix:** Same pattern applied to `Load` in `internal/config/config.go`.
 
+### [Medium] lite-msg — No memory limit on MAPI stream reads
+
+**Risk:** A crafted MSG file with maliciously oversized MAPI streams can exhaust
+process memory when the stream is read into a `[]byte` via `io.ReadAll`.
+
+**Fix:** Added `maxStreamSize = 50 MiB` constant in `internal/parser/cfb.go`.
+`loadDocument` now wraps each stream reader with `io.LimitReader(entry, maxStreamSize)`
+before passing it to `io.ReadAll`. Note: no recursion limit is needed because the
+OLE2/MAPI format is structurally flat (root / recipients / attachments — three levels,
+no further nesting in the parser).
+
 ### [Medium] lite-llm — API key sent over HTTP without warning
 
 **Risk:** When `base_url` begins with `http://` and `api_key` is non-empty, the
@@ -122,12 +133,13 @@ for a local CLI tool.
 
 | ID | Severity | Project | Finding | Status |
 |----|----------|---------|---------|--------|
-| 1  | High     | lite-eml | Recursive MIME depth — DoS | Fixed |
-| 2  | Medium   | lite-eml | Unbounded part body size | Fixed |
-| 3  | Medium   | lite-llm | API key over HTTP | Fixed |
-| 4  | Medium   | lite-switch | Config file permission check | Fixed |
-| 5  | Medium   | lite-rag | Config file permission check | Fixed |
-| 6  | High     | lite-llm | Path traversal via `--file` | Won't fix — CLI tool, user controls paths |
-| 7  | High     | lite-rag | Path traversal via `--db` | Won't fix — CLI tool, user controls paths |
-| 8  | High     | lite-rag | Unauthenticated web server | Deferred — localhost-only default; future `--token` flag |
-| 9  | High     | lite-switch | Insufficient path validation | Won't fix — CLI tool, user controls paths |
+| 1  | High     | lite-eml    | Recursive MIME depth — DoS | Fixed |
+| 2  | Medium   | lite-eml    | Unbounded part body size | Fixed |
+| 3  | Medium   | lite-msg    | Unbounded MAPI stream size | Fixed |
+| 4  | Medium   | lite-llm    | API key over HTTP | Fixed |
+| 5  | Medium   | lite-switch | Config file permission check | Fixed |
+| 6  | Medium   | lite-rag    | Config file permission check | Fixed |
+| 7  | High     | lite-llm    | Path traversal via `--file` | Won't fix — CLI tool, user controls paths |
+| 8  | High     | lite-rag    | Path traversal via `--db` | Won't fix — CLI tool, user controls paths |
+| 9  | High     | lite-rag    | Unauthenticated web server | Deferred — localhost-only default; future `--token` flag |
+| 10 | High     | lite-switch | Insufficient path validation | Won't fix — CLI tool, user controls paths |
