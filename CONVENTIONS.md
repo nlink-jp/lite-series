@@ -1,60 +1,14 @@
 # lite-series Conventions
 
-This document defines the conventions shared across all projects in the lite-series.
-New projects must follow these conventions to remain consistent with the series.
+This document defines the conventions specific to the lite-series.
+
+Development policy, security, authentication, versioning, documentation, and
+submodule workflow are defined in the
+[nlink-jp organization conventions](https://github.com/nlink-jp/.github/blob/main/CONVENTIONS.md).
+The rules there apply to all projects in this series.
 
 Each project also maintains its own `RULES.md` for project-specific rules.
 The `RULES.md` files are nearly identical; differences are noted at the end of this document.
-
----
-
-## Development Principles
-
-These principles apply to all work across the lite-series. They take precedence over
-convenience or speed.
-
-### Security first
-
-Treat security as a first-class concern at every stage of design, implementation,
-and review.
-
-- Never embed secrets, credentials, or sensitive data in source code.
-- Config files that may contain API keys must warn on insecure permissions (see
-  [Configuration File — Permission warning](#permission-warning)).
-- Keep dependencies minimal; document the rationale for each third-party library.
-- Run `govulncheck` as part of the quality gate (`make check`).
-- Any tool that passes untrusted external text to an LLM must apply the shared
-  prompt injection protection strategy. See
-  [docs/security/prompt-injection.md](docs/security/prompt-injection.md).
-
-### Build small, fix small
-
-- Build the smallest unit that satisfies the requirement, then iterate.
-- A fix must be scoped to the reported problem — do not refactor unrelated code in
-  the same change.
-- Do not add features, helpers, or abstractions for hypothetical future requirements.
-- Prefer composition over monolithic structures.
-
-### Design and implement for testability
-
-- Separate concerns so that each package can be tested in isolation.
-- Inject dependencies (I/O, clocks, external clients) rather than hard-coding them,
-  so tests can substitute fakes or in-process servers without external infrastructure.
-- Avoid global mutable state; pass configuration and dependencies explicitly.
-
-### Tests alongside implementation
-
-- Write tests in the same commit or PR as the implementation — never defer them.
-- Do not merge untested production code.
-- Tests must pass before marking a task complete and before committing.
-
-### Documentation alongside implementation
-
-- Update `README`, `docs/`, and `CHANGELOG` in the same commit or PR as the
-  implementation.
-- Japanese translations (`README.ja.md`, `docs/ja/`) must be kept in sync with
-  every change to English documentation.
-- Stale documentation is a bug.
 
 ---
 
@@ -186,8 +140,8 @@ and may not support all platforms.
 6. Cross-compile release binaries (`make build-all` or `make dist` depending on project).
 7. Package binaries: one `.zip` (or `.tar.gz` for CGO projects) per platform.
 8. Create a GitHub Release with English release notes and upload the archives as assets.
-9. Update the `lite-series` umbrella repository: run `git submodule update --remote <project>`
-   and commit the updated submodule pointer.
+9. Update the `lite-series` umbrella repository — see
+   [Working with Submodules](https://github.com/nlink-jp/.github/blob/main/CONVENTIONS.md#working-with-submodules).
 
 Breaking changes require a **minor version bump** while the project is in the `0.x` series.
 
@@ -220,39 +174,6 @@ Security fixes follow an extended checklist — see
 ├── config.example.toml
 ├── README.md
 └── README.ja.md
-```
-
----
-
-## Documentation Conventions
-
-- All source code comments and primary documentation in **English**.
-- A Japanese translation (`docs/ja/`, `README.ja.md`) must be maintained in parallel
-  and kept in sync with every change.
-- README sections (in order): description → features → installation → configuration →
-  usage → building → documentation links.
-- `docs/dependencies.md` — document every third-party dependency: purpose, why not
-  implemented in-house, license.
-
----
-
-## CHANGELOG and Versioning
-
-Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) +
-[Semantic Versioning](https://semver.org/).
-
-Section categories: `Added`, `Changed`, `Fixed`, `Removed`, `Security`, `Docs`, `Internal`.
-Prefix breaking changes with **Breaking:**.
-
-Header template:
-
-```markdown
-# Changelog
-
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/).
 ```
 
 ---
