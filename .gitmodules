@@ -1,0 +1,6 @@
+[submodule "lite-llm"]
+	path = lite-llm
+	url = https://github.com/magifd2/lite-llm.git
+[submodule "lite-rag"]
+	path = lite-rag
+	url = https://github.com/magifd2/lite-rag.git
