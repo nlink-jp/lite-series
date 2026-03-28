@@ -6,6 +6,7 @@
 
 - **Tests are mandatory** — write them with the implementation. A feature is not complete without tests.
 - **Design for testability** — pure functions, injected dependencies, no untestable globals.
+- **Never `go build` directly** — always use `make build` (outputs to `dist/`). `go build` without `-o dist/...` drops the binary in the project root, polluting the working tree.
 - **Docs in sync** — update `README.md` and `README.ja.md` in the same commit as behaviour changes.
 - **Small, typed commits** — `feat:`, `fix:`, `test:`, `chore:`, `docs:`, `refactor:`, `security:`
 
