@@ -16,9 +16,7 @@ Small, local-first CLI tools for LLM interaction, retrieval, classification, and
 
 ```
 lite-series/
-├── lite-eml/    github.com/nlink-jp/lite-eml    (Go — .eml parser → JSONL)
 ├── lite-llm/    github.com/nlink-jp/lite-llm    (Go — OpenAI-compatible LLM CLI)
-├── lite-msg/    github.com/nlink-jp/lite-msg    (Go — .msg parser → JSONL)
 ├── lite-rag/    github.com/nlink-jp/lite-rag    (Go — RAG CLI with DuckDB)
 └── lite-switch/ github.com/nlink-jp/lite-switch (Go — LLM-based stdin classifier)
 ```

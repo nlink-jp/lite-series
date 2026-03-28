@@ -7,9 +7,3 @@
 [submodule "lite-switch"]
 	path = lite-switch
 	url = git@github.com:nlink-jp/lite-switch.git
-[submodule "lite-eml"]
-	path = lite-eml
-	url = git@github.com:nlink-jp/lite-eml.git
-[submodule "lite-msg"]
-	path = lite-msg
-	url = https://github.com/nlink-jp/lite-msg.git
