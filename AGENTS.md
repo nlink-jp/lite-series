@@ -1,36 +1,36 @@
 # AGENTS.md — lite-series
 
-This repository is the root of the **lite-series**: a collection of lightweight Go CLI tools
-for LLM workflows, maintained under the [nlink-jp](https://github.com/nlink-jp) organization.
+## Project summary
 
-## Repository structure
+Umbrella repository for nlink-jp's local-first LLM interaction and pipeline
+tools. Each tool lives in its own repository, included here as a submodule.
+The catalog — one row per tool — is [README.md](README.md); this file covers
+only how to work with the umbrella (ADR-005). Series-specific rules live in
+[CONVENTIONS.md](CONVENTIONS.md), series-level documents under `docs/`.
 
-```
-lite-series/
-├── CONVENTIONS.md   ← series-wide conventions (read this first)
-├── lite-llm/        ← submodule: github.com/nlink-jp/lite-llm
-└── lite-rag/        ← submodule: github.com/nlink-jp/lite-rag
-```
+## Key commands
 
-## Rules
+| Command | Purpose |
+|---------|---------|
+| `git clone --recurse-submodules https://github.com/nlink-jp/lite-series.git` | Clone with all tools |
+| `git submodule update --init` | Populate submodules in an existing clone |
+| `git submodule update --remote <tool>` | Pull a tool's latest main |
+| `git add <tool>` → commit `chore: bump <tool> to vX.Y.Z` | Update the pointer after a tool release |
 
-- Series-wide conventions (config format, CLI, Makefile targets, release process, etc.):
-  → [CONVENTIONS.md](CONVENTIONS.md)
-- Project-level rules (security, testing, documentation policy, etc.):
-  → each project's `RULES.md`
+## Gotchas
 
-## Working with submodules
+- Tool development happens in the tool repositories; new projects start in
+  the workspace root `_wip/`, never directly inside this umbrella
+  (CONVENTIONS.md — Starting a New Project).
+- Submodule checkouts default to detached HEAD — `git checkout main` inside
+  a submodule before committing.
+- Submodule URLs are HTTPS only (SSH fails on machines without key auth).
+- `lite-llm` is archived (kept as a submodule for reference); `lite-eml`
+  and `lite-msg` were renamed and moved to util-series as `eml-to-jsonl`
+  and `msg-to-jsonl` — don't resurrect their rows here.
+- Every submodule needs a catalog row in README.md — `check-org.sh` fails
+  otherwise.
 
-```sh
-# Clone with submodules
-git clone --recurse-submodules git@github.com:nlink-jp/lite-series.git
+## Module path
 
-# Update submodule references after a subproject release
-git submodule update --remote
-git add lite-llm lite-rag
-git commit -m "chore: update submodules"
-```
-
-## Communication language
-
-Japanese (日本語) — see Rule 12 in each project's `RULES.md`.
+Repository: `github.com/nlink-jp/lite-series`

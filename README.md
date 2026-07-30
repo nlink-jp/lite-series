@@ -7,11 +7,13 @@ Each tool is small, focused, and designed to compose cleanly in scripts and pipe
 
 | Project | Description |
 |---------|-------------|
-| [lite-llm](https://github.com/nlink-jp/lite-llm) | Lightweight CLI for OpenAI-compatible LLM APIs. Supports batch mode, structured output, streaming, and prompt-injection protection. |
+| [lite-llm](https://github.com/nlink-jp/lite-llm) | **(archived)** Lightweight CLI for OpenAI-compatible LLM APIs. Supports batch mode, structured output, streaming, and prompt-injection protection. |
 | [lite-rag](https://github.com/nlink-jp/lite-rag) | CLI-based RAG tool for Markdown documents. Indexes files into a local DuckDB vector store and answers natural-language questions via a local LLM. |
 | [lite-switch](https://github.com/nlink-jp/lite-switch) | Natural language classifier for shell pipelines. Reads free-form text from stdin and outputs the best-matching tag via an OpenAI-compatible LLM. |
-| [lite-eml](https://github.com/nlink-jp/lite-eml) | EML parser for shell pipelines. Extracts headers and body from .eml files as structured JSONL, with full charset decoding (ISO-2022-JP, Shift_JIS, etc.). |
-| [lite-msg](https://github.com/nlink-jp/lite-msg) | Outlook MSG parser for shell pipelines. Extracts headers and body from .msg files as structured JSONL (same schema as lite-eml). |
+
+> **Moved:** `lite-eml` and `lite-msg` were renamed and moved to
+> util-series as [eml-to-jsonl](https://github.com/nlink-jp/eml-to-jsonl)
+> and [msg-to-jsonl](https://github.com/nlink-jp/msg-to-jsonl).
 
 ## Design Philosophy
 
