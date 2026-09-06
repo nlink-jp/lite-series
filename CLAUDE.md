@@ -35,7 +35,7 @@ name     = "default"
 
 1. Update `CHANGELOG.md` → commit `chore: release vX.Y.Z` → tag → push
 2. `gh release create` (no assets)
-3. Build 5 platforms: `linux/amd64`, `linux/arm64`, `darwin/amd64`, `darwin/arm64`, `windows/amd64`
+3. Build 4 platforms: `linux/amd64`, `linux/arm64`, `darwin/arm64`, `windows/amd64` (darwin is arm64-only)
 4. Zip each binary + `README.md` → upload one by one
 5. Update umbrella submodule pointer in this repo
 6. Update org profile: `nlink-jp/.github/profile/README.md`
