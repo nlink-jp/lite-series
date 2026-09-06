@@ -1,6 +1,3 @@
-[submodule "lite-llm"]
-	path = lite-llm
-	url = https://github.com/nlink-jp/lite-llm.git
 [submodule "lite-rag"]
 	path = lite-rag
 	url = https://github.com/nlink-jp/lite-rag.git

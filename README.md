@@ -7,9 +7,12 @@ Each tool is small, focused, and designed to compose cleanly in scripts and pipe
 
 | Project | Description |
 |---------|-------------|
-| [lite-llm](https://github.com/nlink-jp/lite-llm) | **(archived)** Lightweight CLI for OpenAI-compatible LLM APIs. Supports batch mode, structured output, streaming, and prompt-injection protection. |
 | [lite-rag](https://github.com/nlink-jp/lite-rag) | CLI-based RAG tool for Markdown documents. Indexes files into a local DuckDB vector store and answers natural-language questions via a local LLM. |
 | [lite-switch](https://github.com/nlink-jp/lite-switch) | Natural language classifier for shell pipelines. Reads free-form text from stdin and outputs the best-matching tag via an OpenAI-compatible LLM. |
+
+> **Archived projects moved:** projects archived out of this series now live
+> in [archive-series](https://github.com/nlink-jp/archive-series) under `lite/`.
+> They are read-only — don't add rows for them back here.
 
 > **Moved:** `lite-eml` and `lite-msg` were renamed and moved to
 > util-series as [eml-to-jsonl](https://github.com/nlink-jp/eml-to-jsonl)

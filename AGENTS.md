@@ -25,9 +25,10 @@ only how to work with the umbrella (ADR-005). Series-specific rules live in
 - Submodule checkouts default to detached HEAD — `git checkout main` inside
   a submodule before committing.
 - Submodule URLs are HTTPS only (SSH fails on machines without key auth).
-- `lite-llm` is archived (kept as a submodule for reference); `lite-eml`
-  and `lite-msg` were renamed and moved to util-series as `eml-to-jsonl`
-  and `msg-to-jsonl` — don't resurrect their rows here.
+- `lite-llm` was archived and moved to
+  [archive-series](https://github.com/nlink-jp/archive-series) (`lite/lite-llm`);
+  `lite-eml` and `lite-msg` were renamed and moved to util-series as
+  `eml-to-jsonl` and `msg-to-jsonl` — don't resurrect their rows here.
 - Every submodule needs a catalog row in README.md — `check-org.sh` fails
   otherwise.
 
