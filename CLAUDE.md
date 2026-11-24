@@ -33,9 +33,20 @@ name     = "default"
 
 ## Release checklist
 
-1. Update `CHANGELOG.md` → commit `chore: release vX.Y.Z` → tag → push
-2. `gh release create` (no assets)
-3. Build 4 platforms: `linux/amd64`, `linux/arm64`, `darwin/arm64`, `windows/amd64` (darwin is arm64-only)
-4. Zip each binary + `README.md` → upload one by one
-5. Update umbrella submodule pointer in this repo
-6. Update org profile: `nlink-jp/.github/profile/README.md`
+The steps are [CONVENTIONS.md §Release Checklist](https://github.com/nlink-jp/.github/blob/main/CONVENTIONS.md#release-checklist) —
+open it for each release. This is its outline, not a substitute.
+
+1. Update `CHANGELOG.md` → commit `chore: release vX.Y.Z` (do not push yet)
+2. `make vuln` (Go: `govulncheck`; Python: `uv audit --frozen`). A finding
+   stops the release before the version is spent: `git reset --soft HEAD~1`,
+   fix it in its own commit, commit the release again
+3. Tag → push (the build reads its version from the tag)
+4. `make clean && make package` — builds every platform, notarizes darwin/arm64
+5. `make verify-release`
+6. `gh release create` (no assets) — only after step 5 passes
+7. Upload each archive one by one (`gh release upload`)
+8. `make brew` for tap-eligible tools
+9. Update umbrella submodule pointer in this repo
+10. Update `nlink-jp/.github/profile/README.md` if new tool
+11. Feed new knowledge back to `nlink-jp/knowledge` if any arose
+12. Run `check-org.sh` to verify all green
